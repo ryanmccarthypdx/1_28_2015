@@ -1,0 +1,15 @@
+<h2>Add questions for the <%= @title %> survey</h2>
+
+<form action="/survey/<%= @survey.id() %>/question_post" method="post">
+  <label for="question_query">Question:</label>
+  <input id="question_query" name="question_query" type="text" placeholder='Do you love unicorns?'>
+  <button type="submit" class="btn btn-primary">Add question</button>
+</form>
+
+  <h4>Questions already added:</h4>
+  <h5>Click to edit</h5>
+  <ol>
+    <% @list_of_questions.each() do |question| %>
+      <li><%= question.query() %></li>
+    <% end %>
+  </ol>

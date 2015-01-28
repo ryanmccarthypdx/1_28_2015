@@ -1,6 +1,6 @@
 require('spec_helper')
 
-describe("Survey") do
+describe(Survey) do
   describe('#capitalize') do
     it("switches uncapitalized survey names to capitalized") do
       new_survey = Survey.create({:title => "loudness"})
@@ -12,4 +12,7 @@ describe("Survey") do
       expect(new_survey.title()).to(eq("Loudness survey"))
     end
   end
+
+  it { should have_many(:questions) }
+
 end
