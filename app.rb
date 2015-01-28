@@ -19,6 +19,15 @@ post("/survey_post") do
   erb(:survey)
 end
 
+get("/survey/:id") do
+  id = params.fetch("id")
+  @survey = Survey.find(id)
+  @list_of_questions = @survey.questions()
+  @title = @survey.title()
+  @page_title = @title
+  erb(:survey)
+end
+
 post("/survey/:id/question_post") do
   id = params.fetch("id")
   query = params.fetch("question_query")
@@ -27,10 +36,5 @@ post("/survey/:id/question_post") do
   @list_of_questions = @survey.questions()
   @title = @survey.title()
   @page_title = @title
-  erb(:survey)
-end
-
-get("/survey/:id") do
-  @id = params.fetch("id")
   erb(:survey)
 end

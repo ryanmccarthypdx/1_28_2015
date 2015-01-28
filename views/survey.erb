@@ -6,6 +6,7 @@
   <button type="submit" class="btn btn-primary">Add question</button>
 </form>
 
+<% if @list_of_questions.any?() do %>
   <h4>Questions already added:</h4>
   <h5>Click to edit</h5>
   <ol>
@@ -13,3 +14,9 @@
       <li><%= question.query() %></li>
     <% end %>
   </ol>
+<% end %>
+<% else %>
+  <h4>Your questions will appear here</h4>
+<% end %>
+
+<h5><a href="/"> Return to Main Page </a></h5>
