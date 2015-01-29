@@ -1,10 +1,4 @@
-<h2>Add questions for the <%= @title %> survey</h2>
-
-<form action="/survey/<%= @survey.id() %>/question_post" method="post">
-  <label for="question_query">Question:</label>
-  <input id="question_query" name="question_query" type="text" placeholder='Do you love unicorns?'>
-  <button type="submit" class="btn btn-primary">Add question</button>
-</form>
+<h2>"<%= @title %>" survey</h2>
 
 <% if @list_of_questions.any?() do %>
   <h4>Questions already added:</h4>
@@ -18,5 +12,13 @@
 <% else %>
   <h4>Your questions will appear here</h4>
 <% end %>
+
+<h4>Add a new question:</h4>
+
+<form action="/survey/<%= @survey.id() %>/question_post" method="post">
+  <label for="question_query">Question:</label>
+  <input id="question_query" name="question_query" type="text" placeholder='Do you love unicorns?'>
+  <button type="submit" class="btn btn-primary">Add question</button>
+</form>
 
 <h5><a href="/"> Return to Main Page </a></h5>
