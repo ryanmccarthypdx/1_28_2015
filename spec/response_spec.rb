@@ -1,5 +1,5 @@
 require 'spec_helper'
 
 describe(Response) do
-  it { should have_and_belong_to_many(:respsets) }
+  it { should have_and_belong_to_many(:responsesets) }
 end

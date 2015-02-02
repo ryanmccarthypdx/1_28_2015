@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe(Respset) do
+describe(Responseset) do
   it { should have_and_belong_to_many(:responses) }
 
   describe('.canned?') do
-    it("returns only the respsets marked as canned") do
+    it("returns only the responsesets marked as canned") do
       agree = Response.create({:answer => "I agree"})
       disagree = Response.create({:answer => "I disagree"})
       agree_id = agree.id()
@@ -12,7 +12,7 @@ describe(Respset) do
       responses_array = []
       responses_array.push(agree_id)
       responses_array.push(disagree_id)
-      respset1 = Respset.create({:response_ids => responses_array, :canned => true})
+      respset1 = Responseset.create({:response_ids => responses_array, :canned => true})
       dunno = Response.create({:answer => "I don't know"})
       privacy = Response.create({:answer => "That's private"})
       dunno_id = dunno.id()
@@ -20,8 +20,8 @@ describe(Respset) do
       responses_array2 = []
       responses_array2.push(dunno_id)
       responses_array2.push(privacy_id)
-      respset2 = Respset.create({:response_ids => responses_array2, :canned => false})
-      expect(Respset.canned?).to(eq(respset1))
+      respset2 = Responseset.create({:response_ids => responses_array2, :canned => false})
+      expect(Responseset.canned?.all).to(eq([respset1]))
     end
   end
 
