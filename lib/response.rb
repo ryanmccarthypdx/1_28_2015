@@ -1,3 +1,3 @@
 class Response < ActiveRecord::Base
-  has_and_belongs_to_many :responsesets
+  has_and_belongs_to_many :response_sets
 end
