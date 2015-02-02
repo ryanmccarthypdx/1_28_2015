@@ -11,6 +11,20 @@
   <h4>What responses would you like your users to choose from?:</h4>
 <% end %>
 
+<h4>Select a canned response set:</h4>
+
+<% 
+<div class="checkbox">
+  <label>
+    <input type="checkbox" name="chosen_respset" value="<%= respset.id() %>">
+    <%= product.name() %>, $<%= product.price() %>
+  </label>
+</div>
+<% end %>
+
+<h4>Or, create a custom response set:</h4>
+
+
 
 
 

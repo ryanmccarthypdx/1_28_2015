@@ -36,6 +36,7 @@ post("/survey/:id/new_question") do
   @question_id = new_question.id()
   @question = Question.find(@question_id)
   @page_title = @query
+  @canned_respsets = Respset.all().canned?()
   erb(:question)
 end
 
