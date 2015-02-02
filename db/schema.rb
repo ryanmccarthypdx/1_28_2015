@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202175604) do
+ActiveRecord::Schema.define(version: 20150202191734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,18 +25,14 @@ ActiveRecord::Schema.define(version: 20150202175604) do
     t.string "answer"
   end
 
-  create_table "responses_questions", force: :cascade do |t|
-    t.integer "question_id"
-    t.integer "response_id"
-  end
-
   create_table "responses_respsets", force: :cascade do |t|
     t.integer "response_id"
     t.integer "respset_id"
   end
 
   create_table "respsets", force: :cascade do |t|
-    t.string "name"
+    t.string  "name"
+    t.boolean "canned"
   end
 
   create_table "surveys", force: :cascade do |t|

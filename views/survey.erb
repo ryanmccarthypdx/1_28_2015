@@ -1,11 +1,16 @@
 <h2>"<%= @title %>" survey</h2>
 
 <% if @list_of_questions.any?() do %>
-  <h4>Questions already added:</h4>
+  <h4>Questions already added and their possible responses:</h4>
   <h5>Click to edit</h5>
   <ol>
     <% @list_of_questions.each() do |question| %>
-      <li><%= question.query() %></li>
+      <li><a href="/survey/<%= @survey.id() %>/question/<%= question.id() %>"><%= question.query() %></a></li>
+        <ul>
+          <% question.respset.response do |response| %>
+            <li><%= response.answer() %></li>
+        </ul>
+          <% end %>
     <% end %>
   </ol>
 <% end %>
@@ -15,7 +20,7 @@
 
 <h4>Add a new question:</h4>
 
-<form action="/survey/<%= @survey.id() %>/question_post" method="post">
+<form action="/survey/<%= @survey.id() %>/new_question" method="post">
   <label for="question_query">Question:</label>
   <input id="question_query" name="question_query" type="text" placeholder='Do you love unicorns?'>
   <button type="submit" class="btn btn-primary">Add question</button>

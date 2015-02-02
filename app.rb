@@ -28,14 +28,15 @@ get("/survey/:id") do
   erb(:survey)
 end
 
-post("/survey/:id/question_post") do
+post("/survey/:id/new_question") do
   @survey_id = params.fetch("id")
   @query = params.fetch("question_query")
   new_question = Question.create({ :query => query, :survey_id => @survey_id })
   # @all_response = Response.all()
   @question_id = new_question.id()
-  @page_title = "Add a new question"
-  erb(:response)
+  @question = Question.find(@question_id)
+  @page_title = @query
+  erb(:question)
 end
 
 delete("/delete_everything") do
