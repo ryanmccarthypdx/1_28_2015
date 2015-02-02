@@ -5,6 +5,6 @@ class Survey < ActiveRecord::Base
 private
 
   define_method(:capitalize_title) do
-    self.title=(title().capitalize())
+    self.title=(title().titleize())
   end
 end

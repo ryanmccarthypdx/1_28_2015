@@ -9,7 +9,7 @@ describe(Survey) do
 
     it("works for multiword survey names also") do
       new_survey = Survey.create({:title => "loudness survey"})
-      expect(new_survey.title()).to(eq("Loudness survey"))
+      expect(new_survey.title()).to(eq("Loudness Survey"))
     end
   end
 
