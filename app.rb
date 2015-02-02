@@ -31,19 +31,19 @@ end
 post("/survey/:id/new_question") do
   @survey_id = params.fetch("id")
   @query = params.fetch("question_query")
-  new_question = Question.create({ :query => query, :survey_id => @survey_id })
+  new_question = Question.create({ :query => @query, :survey_id => @survey_id })
   # @all_response = Response.all()
   @question_id = new_question.id()
   @question = Question.find(@question_id)
   @page_title = @query
-  @canned_respsets = Respset.all().canned?()
+  @canned_response_sets = ResponseSet.canned?.all
   erb(:question)
 end
 
 delete("/delete_everything") do
   Survey.delete_all
   Question.delete_all
-  Respset.delete_all
+  ResponseSet.delete_all
   Response.delete_all
-  erb(:index)
+  redirect '/'
 end

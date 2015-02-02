@@ -6,7 +6,7 @@
   <button type="submit" class="btn btn-primary">Create Survey</button>
 </form>
 
-<% if @all_surveys.==(nil) %>
+<% if !@all_surveys.any? %>
   <h4>Your surveys will appear here</h4>
 <% else %>
   <h4>Surveys already created:</h4>

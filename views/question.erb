@@ -1,7 +1,7 @@
 <h2>Question #<%= @question_id %>, "<%= @query %>"?</h2>
-<% if @question.respsets.any? %>
+<% if @question.response_sets.any? %>
   <h4>Here are the current possible responses to this question:</h4>
-    <% @question.respsets.responses.each do |response| %>
+    <% @question.response_sets.responses.each do |response| %>
     <ul>
       <li><%= response.answer() %></li>
     </ul>
@@ -13,11 +13,13 @@
 
 <h4>Select a canned response set:</h4>
 
-<% 
+<% @canned_response_sets.each() do |canned_set| %>
 <div class="checkbox">
   <label>
-    <input type="checkbox" name="chosen_respset" value="<%= respset.id() %>">
-    <%= product.name() %>, $<%= product.price() %>
+    <input type="checkbox" name="chosen_response_set" value="<%= canned_set.id() %>">
+    <% canned_set.each() do |canned_response| %>
+      <li><%= canned_response.answer() %></li>
+    <% end %>
   </label>
 </div>
 <% end %>

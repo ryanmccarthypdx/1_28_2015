@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe(ResponseSet) do
   it { should have_and_belong_to_many(:responses) }
+  it { should have_and_belong_to_many(:questions) }
 
   describe('.canned?') do
     it("returns only the responsesets marked as canned") do

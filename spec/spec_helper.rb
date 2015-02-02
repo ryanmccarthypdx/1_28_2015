@@ -10,5 +10,11 @@ RSpec.configure do |config|
     Survey.all().each() do |survey|
       survey.destroy()
     end
+    Response.all().each() do |response|
+      response.destroy()
+    end
+    ResponseSet.all().each() do |response_set|
+      response_set.destroy()
+    end
   end
 end
