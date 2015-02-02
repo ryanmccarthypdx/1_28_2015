@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202171942) do
+ActiveRecord::Schema.define(version: 20150202175604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20150202171942) do
     t.integer "respset_id"
   end
 
-  create_table "respset", force: :cascade do |t|
+  create_table "respsets", force: :cascade do |t|
     t.string "name"
   end
 

@@ -6,7 +6,9 @@
   <button type="submit" class="btn btn-primary">Create Survey</button>
 </form>
 
-<% if @all_surveys.any?() do %>
+<% if @all_surveys.==(nil) %>
+  <h4>Your surveys will appear here</h4>
+<% else %>
   <h4>Surveys already created:</h4>
   <h5>Click to edit</h5>
   <ul>
@@ -14,7 +16,9 @@
       <li><a href="/survey/<%= survey.id() %>"><%= survey.title() %></a></li>
     <% end %>
   </ul>
-  <% end %>
-<% else %>
-  <h4>Your surveys will appear here</h4>
 <% end %>
+
+<form action="/delete_everything" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit" class="btn btn-danger">DELETE EVERYTHING FROM DATABASE</button>
+</form>

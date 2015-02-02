@@ -37,3 +37,11 @@ post("/survey/:id/question_post") do
   @page_title = "Add a new question"
   erb(:response)
 end
+
+delete("/delete_everything") do
+  Survey.delete_all
+  Question.delete_all
+  Respset.delete_all
+  Response.delete_all
+  erb(:index)
+end
