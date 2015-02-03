@@ -1,4 +1,4 @@
-<h2>Question "<%= @query %>"</h2>
+<h2>Question "<%= @query %>" for survey "<%= @survey.title() %>"</h2>
 <% if @question.response_sets.any? %>
   <h3>Here are the current possible responses to this question:</h3>
     <% @question.response_sets.responses.each do |response| %>
