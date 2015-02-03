@@ -27,8 +27,21 @@
         </label>
         <br>
         <h4>Or, create your own custom response set:</h4>
-        <label><input type="radio" name="chosen_response_set" value="choose_custom">Custom:</label>
+        <label><input type="radio" name="chosen_response_set" value="choose_custom">Custom (leave fields blank if unneeded)</label>
+          <div style="margin-left: 30px">
+            <label for="response_1">Response 1:</label>
+            <input id="response_1" name="response_1" type="text"><br>
+            <label for="response_2">Response 2:</label>
+            <input id="response_2" name="response_2" type="text"><br>
+            <label for="response_3">Response 3:</label>
+            <input id="response_3" name="response_3" type="text"><br>
+            <label for="response_4">Response 4:</label>
+            <input id="response_4" name="response_4" type="text"><br>
+            <label for="response_5">Response 5:</label>
+            <input id="response_5" name="response_5" type="text">
+          </div>
       </div>
+      <button type="submit" class="btn btn-success">Add Response Set</button>
     </div>
   </form>
 </div>
