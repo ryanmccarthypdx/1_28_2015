@@ -1,0 +1,15 @@
+<h4>Select a canned response set:</h4>
+
+<% @canned_response_sets.each() do |canned_set| %>
+<div class="checkbox">
+  <label>
+    <input type="checkbox" name="chosen_response_set" value="<%= canned_set.id() %>">
+    <h5><%= canned_set.name() %></h5>
+    <% canned_set.responses().each() do |canned_response| %>
+    <li><%= canned_response.answer() %></li>
+    <% end %>
+  </label>
+</div>
+<% end %>
+
+<h4>Or, create a custom response set:</h4>
