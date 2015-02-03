@@ -1,14 +1,14 @@
-<h2>Question #<%= @question_id %>, "<%= @query %>"?</h2>
+<h2>Question "<%= @query %>"</h2>
 <% if @question.response_sets.any? %>
-  <h4>Here are the current possible responses to this question:</h4>
+  <h3>Here are the current possible responses to this question:</h3>
     <% @question.response_sets.responses.each do |response| %>
     <ul>
       <li><%= response.answer() %></li>
     </ul>
     <% end %>
-  <h4>Would you like to change the possible responses?:</h4>
+  <h3>Would you like to change the possible responses?:</h3>
 <% else %>
-  <h4>What responses would you like your users to choose from?:</h4>
+  <h3>What responses would you like your users to choose from?</h3>
 <% end %>
 
 <h4>Select a canned response set:</h4>
@@ -17,9 +17,10 @@
 <div class="checkbox">
   <label>
     <input type="checkbox" name="chosen_response_set" value="<%= canned_set.id() %>">
-    <% canned_set.each() do |canned_response| %>
-      <li><%= canned_response.answer() %></li>
-    <% end %>
+    <h5><%= canned_set.name() %></h5>
+      <% canned_set.each() do |canned_response| %>
+        <li><%= canned_response.answer() %></li>
+      <% end %>
   </label>
 </div>
 <% end %>
