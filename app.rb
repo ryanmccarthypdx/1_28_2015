@@ -45,6 +45,30 @@ get("/survey/:survey_id/question/:question_id") do
   erb(:question)
 end
 
+post("/survey/:survey_id/question/:question_id") do
+  @survey_id = params.fetch("survey_id")
+  @survey = Survey.find(@survey_id)
+  @question_id = params.fetch('question_id')
+  question = Question.find(@question_id)
+  selected_response_set = params.fetch("chosen_response_set")
+  if selected_response_set == "choose_custom"
+    new_response_set = ResponseSet.create()
+    new_response_set_id = new_response_set.id()
+    5.times() do |counter|
+      counter_normalize = counter.+(1)
+      fetched_response = params.fetch("response_#{counter_normalize}")
+      if !fetched_response.==("")
+        Response.create({ :answer => fetched_response, :response_set_ids => new_response_set_id })
+      end
+    end
+    question.response_sets << new_response_set
+  else
+    selected_response_set = ResponseSet.find(selected_response_set.to_i)
+    question.response_sets << selected_response_set
+  end
+  redirect("/survey/#{@survey_id}/question/#{@question_id}")
+end
+
 delete("/delete_everything") do
   Survey.delete_all
   Question.delete_all

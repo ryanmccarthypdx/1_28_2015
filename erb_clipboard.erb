@@ -13,3 +13,41 @@
 <% end %>
 
 <h4>Or, create a custom response set:</h4>
+
+
+###############################
+
+<div class="container-fluid">
+  <form action="/survey/<%= @survey_id %>/question/<%= @question_id %>" method="post">
+    <div class="radio">
+      <label><input type="radio" name="canned_vs_input" value="canned">Select a pre-made response set:</label>
+      <% @canned_response_sets.each() do |canned_set| %>
+      <div class="radio">
+        <label>
+          <input type="radio" name="chosen_canned" value="<%= canned_set.id() %>">
+          <p><%= canned_set.name() %></p>
+          <% canned_set.responses().each() do |canned_response| %>
+          <li><%= canned_response.answer() %></li>
+          <% end %>
+        </label>
+      </div>
+      <% end %>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="canned_vs_input" value="input">Or, create your own custom response set:</label>
+    </div>
+  </form>
+</div>
+
+#############################
+
+<label for="response_1">Response 1:</label>
+<input id="response_1" name="response_1" type="text"><br>
+<label for="response_2">Response 2:</label>
+<input id="response_2" name="response_2" type="text"><br>
+<label for="response_3">Response 3:</label>
+<input id="response_3" name="response_3" type="text"><br>
+<label for="response_4">Response 4:</label>
+<input id="response_4" name="response_4" type="text"><br>
+<label for="response_5">Response 5:</label>
+<input id="response_5" name="response_5" type="text">
