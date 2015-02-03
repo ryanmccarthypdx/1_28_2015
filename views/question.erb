@@ -11,23 +11,24 @@
   <h3>What responses would you like your users to choose from?</h3>
 <% end %>
 
-<form action="/survey/<%= @survey_id %>/question/<%= @question_id %>" method="post">
-  <h4>Select a pre-made response set:</h4>
-    <div class="radio">
-      <label>
-        <% @canned_response_sets.each() do |canned_set| %>
-            <input type="radio" name="chosen_response_set" value="<%= canned_set.id() %>">
+<div style="margin-left: 30px">
+  <form action="/survey/<%= @survey_id %>/question/<%= @question_id %>" method="post">
+    <h4>Select a pre-made response set:</h4>
+      <div class="radio">
+        <label>
+          <% @canned_response_sets.each() do |canned_set| %>
+              <input type="radio" name="chosen_response_set" value="<%= canned_set.id() %>">
                 <p><%= canned_set.name() %></p>
                 <% canned_set.responses().each() do |canned_response| %>
                 <li><%= canned_response.answer() %></li>
+          <% end %>
+          <br>
         <% end %>
+        </label>
         <br>
-      <% end %>
-      </label>
-      <br>
-      <label><input type="radio" name="chosen_response_set" value="choose_custom">
-        <strong>Or, create your own custom response set:</strong>
-      </label>
+        <h4>Or, create your own custom response set:</h4>
+        <label><input type="radio" name="chosen_response_set" value="choose_custom">Custom:</label>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>
