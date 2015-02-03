@@ -12,11 +12,12 @@ end
 
 post("/survey_post") do
   title = params.fetch("survey_title")
-  @survey = Survey.create({:title => title})
-  @title = @survey.title()
-  @list_of_questions = @survey.questions()
-  @page_title = @title
-  erb(:survey)
+  survey = Survey.create({:title => title})
+  # @title = @survey.title()
+  @survey_id = survey.id()
+  # @list_of_questions = @survey.questions()
+  # @page_title = @title
+  redirect '/survey/'.concat(@survey_id.to_s)
 end
 
 get("/survey/:id") do
@@ -30,11 +31,17 @@ end
 
 post("/survey/:id/new_question") do
   @survey_id = params.fetch("id")
-  @query = params.fetch("question_query")
-  new_question = Question.create({ :query => @query, :survey_id => @survey_id })
-  # @all_response = Response.all()
+  query = params.fetch("question_query")
+  new_question = Question.create({ :query => query, :survey_id => @survey_id })
   @question_id = new_question.id()
+  redirect '/survey/'.concat(@survey_id.to_s).concat('/question/').concat(@question_id.to_s)
+end
+
+get("/survey/:survey_id/question/:question_id") do
+  @survey_id = params.fetch("survey_id")
+  @question_id = params.fetch('question_id')
   @question = Question.find(@question_id)
+  @query = @question.query()
   @page_title = @query
   @canned_response_sets = ResponseSet.canned?.all
   erb(:question)
