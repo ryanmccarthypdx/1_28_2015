@@ -10,15 +10,14 @@
   <h4>Your surveys will appear here</h4>
 <% else %>
   <h4>Surveys already created:</h4>
-  <h5>Click to edit</h5>
   <ul>
     <% @all_surveys.each() do |survey| %>
-      <li><a href="/survey/<%= survey.id() %>"><%= survey.title() %></a></li>
+      <li>Survey "<%= survey.title() %>"  <a href="/survey/<%= survey.id() %>">edit</a>  <a href="/survey/<%= survey.id() %>/start">take</a></li>
     <% end %>
   </ul>
 <% end %>
 
-<form action="/delete_everything" method="post">
+<form action="/delete_everything" method="get">
   <input name="_method" type="hidden" value="delete">
   <button type="submit" class="btn btn-danger">DELETE EVERYTHING FROM DATABASE</button>
 </form>

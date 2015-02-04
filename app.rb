@@ -75,3 +75,9 @@ delete("/delete_everything") do
   Response.delete_all
   redirect '/'
 end
+
+# get('/survey/:id/start') do
+#
+#
+#   erb(:start)
+# end
