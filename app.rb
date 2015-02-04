@@ -61,7 +61,7 @@ post("/survey/:survey_id/question/:question_id") do
         Response.create({ :answer => fetched_response, :response_set_ids => new_response_set_id })
       end
     end
-    question.response_set_id << new_response_set_id
+    question.update({ :response_set_id => new_response_set_id })
   else
     question.update({ :response_set_id => (selected_response_set.to_i) })
   end
