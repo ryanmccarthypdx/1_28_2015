@@ -73,11 +73,24 @@ delete("/delete_everything") do
   Question.delete_all
   ResponseSet.delete_all
   Response.delete_all
+  Session.delete_all
   redirect '/'
 end
 
-# get('/survey/:id/start') do
-#
-#
-#   erb(:start)
-# end
+post('/survey/:id/start') do
+  new_session = Session.create()
+  @session_id = new_session.id()
+  @survey_id = params.fetch("id")
+  survey = Survey.find(@survey_id)
+  @title = survey.name
+
+  all_questions = survey.questions
+  question_count = all_questions.count
+
+  question_count.times do
+    params.fetch("question_#{()}_id")
+    LoggedResponse.create({ :survey_id => @survey_id, :session_id => @session_id, :question_id => question_id })
+
+
+  erb(:start)
+end
