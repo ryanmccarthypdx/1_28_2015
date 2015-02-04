@@ -1,7 +1,7 @@
-<h2>Question "<%= @query %>" for survey "<%= @survey.title() %>"</h2>
-<% if @question.response_sets.any? %>
+<h2>Question "<%= @query %>" for survey <a href="/survey/<%= @survey.id %>">"<%= @survey.title() %>"</a></h2>
+<% if @question.response_set_id.!=(nil) %>
   <h3>Here are the current possible responses to this question:</h3>
-    <% @question.response_sets.first.responses.each do |response| %>
+    <% ResponseSet.find(@question.response_set_id).responses.each do |response| %>
     <ul>
       <li><%= response.answer() %></li>
     </ul>

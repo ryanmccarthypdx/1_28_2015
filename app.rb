@@ -14,7 +14,7 @@ post("/survey_post") do
   title = params.fetch("survey_title")
   survey = Survey.create({:title => title})
   @survey_id = survey.id()
-  redirect("/survey/#{@survey_id}/")
+  redirect("/survey/#{@survey_id}")
 end
 
 get("/survey/:id") do
@@ -61,10 +61,9 @@ post("/survey/:survey_id/question/:question_id") do
         Response.create({ :answer => fetched_response, :response_set_ids => new_response_set_id })
       end
     end
-    question.response_sets << new_response_set
+    question.response_set_id << new_response_set_id
   else
-    selected_response_set = ResponseSet.find(selected_response_set.to_i)
-    question.response_sets << selected_response_set
+    question.update({ :response_set_id => (selected_response_set.to_i) })
   end
   redirect("/survey/#{@survey_id}/question/#{@question_id}")
 end
