@@ -65,7 +65,7 @@ post("/survey/:survey_id/question/:question_id") do
   else
     question.update({ :response_set_id => (selected_response_set.to_i) })
   end
-  redirect("/survey/#{@survey_id}/question/#{@question_id}")
+  redirect("/survey/#{@survey_id}")
 end
 
 delete("/delete_everything") do

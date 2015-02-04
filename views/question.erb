@@ -1,14 +1,16 @@
 <h2>Question "<%= @query %>" for survey <a href="/survey/<%= @survey.id %>">"<%= @survey.title() %>"</a></h2>
 <% if @question.response_set_id.!=(nil) %>
-  <h3>Here are the current possible responses to this question:</h3>
-    <% ResponseSet.find(@question.response_set_id).responses.each do |response| %>
+  <h4>Here are the current possible responses to this question:</h4>
+  <div style="margin-left: 50px">
     <ul>
-      <li><%= response.answer() %></li>
+      <% ResponseSet.find(@question.response_set_id).responses.each do |response| %>
+        <li><%= response.answer() %></li>
+      <% end %>
     </ul>
-    <% end %>
-  <h3>Would you like to change the possible responses?:</h3>
+  </div>
+  <h4>Would you like to change the possible responses?:</h4>
 <% else %>
-  <h3>What responses would you like your users to choose from?</h3>
+  <h4>What responses would you like your users to choose from?</h4>
 <% end %>
 
 <div style="margin-left: 30px">
@@ -18,11 +20,12 @@
         <label>
           <% @canned_response_sets.each() do |canned_set| %>
               <input type="radio" name="chosen_response_set" value="<%= canned_set.id() %>">
-                <p><%= canned_set.name() %></p>
+                <%= canned_set.name() %>
+              <ul>
                 <% canned_set.responses().each() do |canned_response| %>
                 <li><%= canned_response.answer() %></li>
-          <% end %>
-          <br>
+                <% end %>
+              </ul>
         <% end %>
         </label>
         <br>

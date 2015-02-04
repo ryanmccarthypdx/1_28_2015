@@ -7,10 +7,10 @@
     <% @list_of_questions.each() do |question| %>
       <li><a href="/survey/<%= @survey.id() %>/question/<%= question.id() %>"><%= question.query() %></a></li>
         <ul>
-          <% question.response_sets.first.each() do |response| %>
+          <% ResponseSet.find(question.response_set_id).responses.each do |response| %>
             <li><%= response.answer() %></li>
-        </ul>
           <% end %>
+        </ul>
     <% end %>
   </ol>
 <% end %>
