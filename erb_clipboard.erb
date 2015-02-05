@@ -1,3 +1,10 @@
+<%= Response.find(@your_logged_responses.where(question_id: question.id).first.response_id).answer %>
+
+##############
+
+
+
+
 <h4>Select a canned response set:</h4>
 
 <% @canned_response_sets.each() do |canned_set| %>

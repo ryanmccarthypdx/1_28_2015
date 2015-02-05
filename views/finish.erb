@@ -1,3 +1,17 @@
-<h1>Here are your results</h1>
+<h1>Here are your results for survey "<%= @title %>"</h1>
 
-<h3>For Ryan's reference, your session id for this session was <strong><%= @session_id %></strong></h3>
+<h5>For Ryan's reference, your session id for this session was <strong><%= @session_id %></strong></h5>
+
+<h5>Here are the responses I have logged for you:</h5>
+  <ol>
+    <% @list_of_questions.each() do |question| %>
+    <li><%= question.query() %>:
+      <strong>
+        <%= Response.find(@your_logged_responses.where(question_id: question.id).first.response_id).answer %>
+      </strong></li>
+    <% end %>
+  </ol>
+
+<h5>Thanks for taking survey <%= @title %></h5>
+
+<h5><a href="/"> Return to Main Page </a></h5>

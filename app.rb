@@ -95,17 +95,19 @@ post('/survey/:id/finish') do
   @session_id = params.fetch('session_id').to_i
   @survey_id = params.fetch('id')
   survey = Survey.find(@survey_id)
-  @title = survey.name
+  @title = survey.title
   @page_title = @title
-  
+
   @list_of_questions = survey.questions
   @question_count = @list_of_questions.count
 
-  @list_questions.each do |question|
+  @list_of_questions.each do |question|
     question_id = question.id()
     logged_response = params.fetch("question_#{question_id}_response").to_i
-    LoggedResponse.create({ :survey_id => @survey_id, :session_id => @session_id, :question_id => question_id, :response_id => logged_response })
+    LoggedResponse.create({ :session_id => @session_id, :question_id => question_id, :response_id => logged_response })
   end
+
+  @your_logged_responses = Session.find(@session_id).logged_responses()
 
   erb(:finish)
 end
